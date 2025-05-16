@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar,IonContent } from "@ionic/angular/standalone";
+import { MenuController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { ComponentsModule } from '../../components/components.module';
+import { DataService } from '../../services/data.service';
 
 interface Componente {
   icon: string;
@@ -14,22 +17,13 @@ interface Componente {
   standalone: false,
 })
 export class InicioPage implements OnInit {
-
-  componentes: Componente[] = [
-    {
-      icon: 'logo-octocat',
-      name: 'Action Sheet',
-      redirectTo: '/action-sheet'
-    },
-    {
-      icon: 'skull-outline',
-      name: 'Alert',
-      redirectTo: '/alert'
-    },
-  ];
-  constructor() { }
-
+  componentes!: Observable<Componente[]>;
+  constructor(private menuCtrl: MenuController,
+    private dataService: DataService) { }
   ngOnInit() {
+    this.componentes = this.dataService.getMenuOpts();
   }
-
+  mostrarMenu() {
+    this.menuCtrl.open('first');
+  }
 }
