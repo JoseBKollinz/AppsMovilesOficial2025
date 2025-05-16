@@ -8,5 +8,10 @@
         "icon": "alert-circle-outline",
         "name": "Alert",
         "redirectTo": "/alert"
+    },
+     {
+        "icon": "log-in-outline",
+        "name": "Input",
+        "redirectTo": "/input"
     }
 ]
